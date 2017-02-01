@@ -1,0 +1,30 @@
+{
+	"name": "angular-npm-module-seed",
+	"version": "1.0.0",
+	"description": "",
+	"main": "bundles/module-seed.umd.min.js",
+	"module": "index.js",
+	"typings": "index.d.ts",
+	"keywords": [
+		"angular"
+	],
+	"author": {
+		"name": "",
+		"email": ""
+	},
+	"license": "",
+	"repository": {
+		"type": "git",
+		"url": ""
+	},
+	"homepage": "",
+	"bugs": {
+		"url": ""
+	},
+	"peerDependencies": {
+		"@angular/core": "^2.4.0",
+		"reflect-metadata": "^0.1.8",
+		"rxjs": "^5.0.1",
+		"zone.js": "^0.7.2"
+	}
+}

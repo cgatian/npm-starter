@@ -1,26 +1,25 @@
 const path = require('path');
 const ngcWebpack = require('ngc-webpack');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const webpack = require('webpack');
+var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     devtool: 'inline-source-map',
     entry: {
-        'module-seed.umd': './.tmp/src/seed.module.ngfactory.ts',
-        'module-seed.umd.min': './.tmp/src/seed.module.ngfactory.ts'
+        'npm-module-seed.umd': './dist/index.js',
+        // 'npm-module-seed.umd.min': './dist/index.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist/bundles'),
         filename: '[name].js',
-        libraryTarget: 'umd',
-        library: 'module-seed'
+        libraryTarget: 'commonjs',
+        library: 'npm-module-seed'
     },
     resolve: {
         extensions: ['.ts', '.js']
     },
-    externals: [
-        /^\@angular\//,
-        /^rxjs\//
-    ],
+    // externals: [nodeExternals()],
     module: {
         rules: [
             {
@@ -91,6 +90,12 @@ module.exports = {
                 join_vars: true,
                 negate_iife: false // we need this for lazy v8
             },
-        })  
+        }),
+        new webpack.ContextReplacementPlugin(
+        // The (\\|\/) piece accounts for path separators in *nix and Windows
+        /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+        path.resolve(__dirname, './src'), // location of your src
+        {} // a map of your routes 
+      ),
     ]
 };

@@ -13,9 +13,9 @@
     "prebuild": "npm run clean",
     "build": "webpack",
     "postbuild": "npm run copy",
-    "minify": "./node_modules/uglify-js/bin/uglifyjs dist/bundles/npm-module-seed.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/npm-module-seed.umd.min.js",
+    "minify": ".\\node_modules\\.bin\\uglifyjs dist/bundles/npm-module-seed.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/npm-module-seed.umd.min.js",
     "copy": "cpx \"./package-dist.json\" dist && renamer --find \"package-dist.json\" --replace \"package.json\" ./dist/*",
-    "builds": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy"
+    "build-rollup": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy"
   },
   "license": "MIT",
   "homepage": "",
@@ -34,7 +34,8 @@
     "rimraf": "^2.5.4",
     "rollup": "^0.41.4",
     "typescript": "2.0.10",
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^2.7.5",
+    "webpack-node-externals": "^1.5.4"
   },
   "dependencies": {
     "@angular/common": "^2.4.4",
